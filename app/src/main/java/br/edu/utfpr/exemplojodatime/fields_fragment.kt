@@ -39,29 +39,39 @@ class fields_fragment : Fragment() {
     }
 
     fun calculaData(){
-        val datePrimaria: LocalDate =  LocalDate.fromDateFields(SimpleDateFormat("dd/MM/yyyy").parse(dataPrimaria.text.toString()))
-        val dateSecundaria: LocalDate =  LocalDate.fromDateFields(SimpleDateFormat("dd/MM/yyyy").parse(dataSecundaria.text.toString()))
-        val horaPrimaria: Date =  SimpleDateFormat("HH:mm").parse(horaPrimaria.text.toString())
-        val horaSecundaria: Date =  SimpleDateFormat("HH:mm").parse(horaSecundaria.text.toString())
+        val datePrimaria: LocalDate =
+                LocalDate.fromDateFields(
+                    SimpleDateFormat("dd/MM/yyyy").
+                    parse(dataPrimaria.text.toString()))
 
-        var dtInicio = DateTime(datePrimaria.year, datePrimaria.monthOfYear, datePrimaria.dayOfMonth, 12, horaPrimaria.hours, horaPrimaria.minutes, 0);
-        var dtFim = DateTime(dateSecundaria.year, dateSecundaria.monthOfYear, dateSecundaria.dayOfMonth, 12, horaSecundaria.hours, horaPrimaria.minutes, 0);
+        val dateSecundaria: LocalDate =
+                LocalDate.fromDateFields(
+                    SimpleDateFormat("dd/MM/yyyy").
+                    parse(dataSecundaria.text.toString()))
+
+        val horaPrimaria: Date =
+                SimpleDateFormat("HH:mm").
+                   parse(horaPrimaria.text.toString())
+
+        val horaSecundaria: Date =
+                SimpleDateFormat("HH:mm").
+                   parse(horaSecundaria.text.toString())
+
+        var dtInicio =
+              DateTime(datePrimaria.year, datePrimaria.monthOfYear, datePrimaria.dayOfMonth,
+             12, horaPrimaria.hours, horaPrimaria.minutes, 0);
+
+        var dtFim =
+             DateTime(dateSecundaria.year, dateSecundaria.monthOfYear, dateSecundaria.dayOfMonth,
+                 12, horaSecundaria.hours, horaPrimaria.minutes, 0);
 
         val period = Period(dtInicio, dtFim, PeriodType.yearMonthDay())
 
         val builder = getActivity()?.let { AlertDialog.Builder(it) }
         builder?.setTitle("Tempo Passado")
-        builder?.setMessage("Anos passados: ${period.years}, Meses passados: ${period.months}, Dias Passados: ${period.days}")
+        builder?.setMessage("Anos passados: ${period.years}, " +
+                            "Meses passados: ${period.months}, " +
+                            "Dias Passados: ${period.days}")
         builder?.show()
-    }
-
-    companion object {
-        fun newInstance(callback: () -> Unit): fields_fragment {
-            val f = fields_fragment()
-
-
-
-            return f
-        }
     }
 }

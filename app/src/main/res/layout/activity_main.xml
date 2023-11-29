@@ -18,13 +18,6 @@
            android:layout_height="match_parent"
            tools:layout="@layout/fields_fragment"/>
 
-       <fragment
-           android:id="@+id/timePicker1"
-           class="br.edu.utfpr.exemplojodatime.timepicker_fragment"
-           android:layout_width="0dp"
-           android:layout_height="match_parent"
-           tools:layout="@layout/timepicker_fragment"/>
-
    </FrameLayout>
 
 </LinearLayout>
